@@ -224,14 +224,48 @@ def login_sucess():
 
 
 def package_status():
-    global tree
     global time_status_entry
+    global win
+    global vsb
 
     win = tk.Toplevel(top)
     win.title("Get Status of All Packages")
     win.geometry("550x500")
     win.configure(bg='White')
 
+    # tree = ttk.Treeview(win, selectmode='browse')
+    # tree.pack(side='left')
+    # tree.place(x=200,y=200)
+    #
+    # vsb = ttk.Scrollbar(win, orient="vertical", command=tree.yview)
+    # vsb.pack(side='right', fill='y')
+    # vsb.place(x=404,y=200, height=200)
+    #
+    # tree.configure(yscrollcommand=vsb.set)
+    #
+    # tree["columns"] = ("1", "2")
+    # tree['show'] = 'headings'
+    # tree.column("1", width=100, anchor='c')
+    # tree.column("2", width=100, anchor='c')
+    #
+    # tree.heading("1", text="ID")
+    # tree.heading("2", text="Status")
+
+    time_status_label = Label(win, text="Enter time(in 'HH:MM:SS Format)", height=0, width=0, font=("Baghdad", 13))
+    time_status_label.configure(bg='lightblue')
+    time_status_label.place(x=35, y=100)
+
+    time_status_entry = Entry(win, width=20, bg="white")
+    time_status_entry.pack()
+    time_status_entry.place(x=250, y=100)
+
+    myButton = Button(win, text='enter', command=get_package_statuses)
+    myButton.pack()
+    myButton.place(x=250, y=130)
+
+def new_scrollbar():
+    global tree
+    global vsb
     tree = ttk.Treeview(win, selectmode='browse')
     tree.pack(side='left')
     tree.place(x=200,y=200)
@@ -250,22 +284,10 @@ def package_status():
     tree.heading("1", text="ID")
     tree.heading("2", text="Status")
 
-    time_status_label = Label(win, text="Enter time(in 'HH:MM:SS Format)", height=0, width=0, font=("Baghdad", 13))
-    time_status_label.configure(bg='lightblue')
-    time_status_label.place(x=35, y=100)
-
-    time_status_entry = Entry(win, width=20, bg="white")
-    time_status_entry.pack()
-    time_status_entry.place(x=250, y=100)
-
-
-    myButton = Button(win, text='enter', command=get_package_statuses)
-    myButton.pack()
-    myButton.place(x=250, y=130)
-
 def get_package_statuses():
     global p_time
     p_time = time_status_entry.get()
+    new_scrollbar()
 
     user_input_input_time = p_time
     convert_user_input_time = datetime.strptime(user_input_input_time,
