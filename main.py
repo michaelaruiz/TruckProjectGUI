@@ -231,7 +231,6 @@ def package_status():
     win.title("Get Status of All Packages")
     win.geometry("550x500")
     win.configure(bg='White')
-    Label(win, text="Screen").pack()
 
     tree = ttk.Treeview(win, selectmode='browse')
     tree.pack(side='left')
@@ -251,7 +250,7 @@ def package_status():
     tree.heading("1", text="ID")
     tree.heading("2", text="Status")
 
-    time_status_label = Label(win, text="Enter time", height=0, width=0, font=("Baghdad", 13))
+    time_status_label = Label(win, text="Enter time(in 'HH:MM:SS Format)", height=0, width=0, font=("Baghdad", 13))
     time_status_label.configure(bg='lightblue')
     time_status_label.place(x=35, y=100)
 
@@ -331,7 +330,7 @@ def get_package():
     id_entry.pack()
     id_entry.place(x=250, y=65)
 
-    time_label = Label(root1, text="Enter time", height=0, width=0, font=("Baghdad", 13))
+    time_label = Label(root1, text="Enter time (in 'HH:MM:SS Format)", height=0, width=0, font=("Baghdad", 13))
     time_label.configure(bg='lightblue')
     time_label.place(x=35, y=100)
 
